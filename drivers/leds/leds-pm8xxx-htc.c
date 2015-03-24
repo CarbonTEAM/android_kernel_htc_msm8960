@@ -49,8 +49,8 @@
 #define MAX_LC_LED_CURRENT		40
 #define MAX_KP_BL_LED_CURRENT		300
 
-#define PM8XXX_ID_LED_CURRENT_FACTOR	2  
-#define PM8XXX_ID_FLASH_CURRENT_FACTOR	20 
+#define PM8XXX_ID_LED_CURRENT_FACTOR	2
+#define PM8XXX_ID_FLASH_CURRENT_FACTOR	20
 
 #define PM8XXX_FLASH_MODE_DBUS1		1
 #define PM8XXX_FLASH_MODE_DBUS2		2
@@ -80,7 +80,7 @@ static int current_blink = 0;
 static int lut_coefficient = 100;
 static int dutys_array[64];
 
-static int blink_buttons = 1;
+static int blink_buttons = 0;
 
 u8 pm8xxxx_led_pwm_mode(int flag)
 {
@@ -1003,7 +1003,7 @@ static int __devinit pm8xxx_led_probe(struct platform_device *pdev)
 				goto err_register_attr_off_timer;
 			}
 			alarm_init(&led[i].led_alarm, ANDROID_ALARM_ELAPSED_REALTIME_WAKEUP, led_alarm_handler);
-			INIT_WORK(&led[i].led_work, led_work_func); 
+			INIT_WORK(&led[i].led_work, led_work_func);
 		}
 
 		if (!strcmp(led_dat->cdev.name, "button-backlight")) {
